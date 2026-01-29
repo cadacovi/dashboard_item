@@ -11,10 +11,26 @@ const app = express();
 connectDB();
 
 // Middlewares
-app.use(cors({
-  origin: config.frontendUrl,
+// CORS: permite el frontend y tambien requests desde el mismo dominio en produccion
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      config.frontendUrl,
+      'http://localhost:5173',
+      'http://localhost:5000'
+    ];
+    
+    // En produccion, permitir requests sin origin (mismo dominio)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
   credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

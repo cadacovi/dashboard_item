@@ -164,37 +164,3 @@ Respuesta esperada:
       "message": "Item eliminado exitosamente"
     }
 
-## Despliegue en Vercel
-
-Este proyecto esta configurado para desplegarse completamente en Vercel (frontend + backend como serverless functions).
-
-### Pasos para desplegar:
-
-1. **Haz push de tu codigo a GitHub:**
-
-```bash
-git add .
-git commit -m "Configurar proyecto para Vercel"
-git push origin main
-```
-
-2. **En Vercel Dashboard:**
-   - Importa tu repositorio de GitHub
-   - Vercel detectara automaticamente la configuracion de `vercel.json`
-
-3. **Configura las variables de entorno en Vercel:**
-   - Ve a Settings → Environment Variables
-   - Agrega las siguientes variables:
-     - `MONGODB_URI`: Tu connection string de MongoDB Atlas
-     - `JWT_SECRET`: Una clave secreta para JWT
-     - `JWT_EXPIRES_IN`: `7d`
-     - `NODE_ENV`: `production`
-     - `FRONTEND_URL`: URL de tu deployment (ej: `https://tu-app.vercel.app`)
-
-4. **Despliega:**
-   - Vercel construira automaticamente el frontend y configurara el backend como serverless functions
-   - Tu API estara disponible en `https://tu-app.vercel.app/api`
-   - El frontend en `https://tu-app.vercel.app`
-
-**Nota:** Asegurate de usar MongoDB Atlas (nube) ya que Vercel no soporta bases de datos locales.
-
