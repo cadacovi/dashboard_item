@@ -1,22 +1,22 @@
 {
   "version": 2,
+  "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
-  "functions": {
-    "backend/src/server.js": {
-      "runtime": "nodejs18.x"
+  "installCommand": "npm install --prefix frontend && npm install --prefix backend",
+  "builds": [
+    {
+      "src": "backend/src/server.js",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/backend/src/server.js"
+      "dest": "backend/src/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/dist/index.html"
+      "dest": "frontend/dist/$1"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
