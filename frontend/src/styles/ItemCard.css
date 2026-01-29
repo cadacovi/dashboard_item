@@ -1,0 +1,64 @@
+.item-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+}
+
+.item-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.item-card-header h3 {
+  color: var(--dark-text);
+  font-size: 20px;
+  flex: 1;
+}
+
+.item-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-in-progress {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status-completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.item-description {
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.item-card-footer {
+  display: flex;
+  gap: 10px;
+}
+
+.item-card-footer .btn {
+  flex: 1;
+  padding: 8px 16px;
+  font-size: 14px;
+}
