@@ -14,7 +14,7 @@ const connectDB = async () => {
   try {
     // Opciones optimizadas para serverless
     const options = {
-      bufferCommands: false,
+      bufferCommands: true,
       maxPoolSize: 10,
     };
 
