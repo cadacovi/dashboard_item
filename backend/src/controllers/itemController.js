@@ -46,6 +46,13 @@ class ItemController {
     try {
       const item = await itemService.getItemById(req.params.id, req.user.id);
       
+      if (!item) {
+        return res.status(404).json({
+          success: false,
+          message: 'Item no encontrado'
+        });
+      }
+
       res.status(200).json({
         success: true,
         data: item
@@ -67,7 +74,14 @@ class ItemController {
       }
 
       const item = await itemService.updateItem(req.params.id, req.user.id, req.body);
-      
+
+      if (!item) {
+        return res.status(404).json({
+          success: false,
+          message: 'Item no encontrado'
+        });
+      }
+
       res.status(200).json({
         success: true,
         message: 'Item actualizado exitosamente',
@@ -81,8 +95,15 @@ class ItemController {
   // Eliminar item
   async deleteItem(req, res, next) {
     try {
-      await itemService.deleteItem(req.params.id, req.user.id);
-      
+      const item = await itemService.deleteItem(req.params.id, req.user.id);
+
+      if (!item) {
+        return res.status(404).json({
+          success: false,
+          message: 'Item no encontrado'
+        });
+      }
+
       res.status(200).json({
         success: true,
         message: 'Item eliminado exitosamente'
