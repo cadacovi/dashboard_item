@@ -23,7 +23,7 @@ class ItemService {
   async getItemById(itemId, userId) {
     const item = await Item.findOne({ _id: itemId, user: userId });
     if (!item) {
-      throw new Error('Item no encontrado');
+      return null;
     }
     return item;
   }
@@ -37,7 +37,7 @@ class ItemService {
     );
 
     if (!item) {
-      throw new Error('Item no encontrado');
+      return null;
     }
 
     return item;
@@ -47,7 +47,7 @@ class ItemService {
   async deleteItem(itemId, userId) {
     const item = await Item.findOneAndDelete({ _id: itemId, user: userId });
     if (!item) {
-      throw new Error('Item no encontrado');
+      return null;
     }
     return item;
   }
