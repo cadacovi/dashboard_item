@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const config = require('../config/config');
+const AppError = require('../utils/AppError');
 
 class AuthService {
   // Generar JWT token
@@ -17,7 +18,7 @@ class AuthService {
     // Verificar si el usuario ya existe
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      throw new Error('El email ya esta registrado');
+      throw new AppError('El email ya esta registrado', 400);
     }
 
     // Crear usuario
@@ -41,13 +42,13 @@ class AuthService {
     // Buscar usuario con password
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
-      throw new Error('Credenciales invalidas');
+      throw new AppError('Credenciales invalidas', 401);
     }
 
     // Verificar password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      throw new Error('Credenciales invalidas');
+      throw new AppError('Credenciales invalidas', 401);
     }
 
     // Generar token
@@ -67,7 +68,7 @@ class AuthService {
   async getProfile(userId) {
     const user = await User.findById(userId);
     if (!user) {
-      throw new Error('Usuario no encontrado');
+      throw new AppError('Usuario no encontrado', 404);
     }
 
     return {

@@ -15,11 +15,17 @@ const itemValidation = [
   body('status').optional().isIn(['pending', 'in-progress', 'completed']).withMessage('Estado invalido')
 ];
 
+const itemUpdateValidation = [
+  body('title').optional().trim().notEmpty().withMessage('El titulo no puede estar vacio'),
+  body('description').optional().trim().notEmpty().withMessage('La descripcion no puede estar vacia'),
+  body('status').optional().isIn(['pending', 'in-progress', 'completed']).withMessage('Estado invalido')
+];
+
 // Rutas CRUD
 router.post('/', itemValidation, itemController.createItem);
 router.get('/', itemController.getUserItems);
 router.get('/:id', itemController.getItem);
-router.patch('/:id', itemValidation, itemController.updateItem);
+router.patch('/:id', itemUpdateValidation, itemController.updateItem);
 router.delete('/:id', itemController.deleteItem);
 
 module.exports = router;
