@@ -1,24 +1,8 @@
-# Ignorar node_modules (Vercel los instala automaticamente)
 node_modules
 */node_modules
-
-# Archivos de desarrollo
 .env
-.env.local
 backend/.env
-*.log
-
-# Archivos de IDE
 .vscode
 .idea
-*.swp
-*.swo
-
-# Archivos temporales
-.DS_Store
-*.tmp
-
-# Tests y coverage
-coverage
 *.test.js
 __tests__
