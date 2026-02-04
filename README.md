@@ -2,6 +2,11 @@
 
 Este proyecto es una aplicacion fullstack que permite gestionar items personales asociados a un usuario. Incluye autenticacion con JWT, backend en Node.js con Express y MongoDB, y frontend en React con TypeScript.
 
+## deploy
+
+La aplicacion esta desplegada en Vercel, y la base de datos mongo esta hosteada en Atlas
+url: [https://dashboard-item.vercel.app/](https://dashboard-item.vercel.app/)
+
 ## Descripcion
 
 Dashboard Items es una plataforma donde los usuarios pueden registrarse, iniciar sesion y gestionar una lista de items (tareas, notas, etc). Cada usuario solo puede ver y modificar sus propios items. El backend expone una API REST protegida con JWT y el frontend consume esa API para mostrar la informacion y permitir la gestion de los items.
